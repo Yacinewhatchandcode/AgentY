@@ -1,0 +1,149 @@
+.terminal-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: #1a1a2e;
+    border-radius: 12px;
+    overflow: hidden;
+    font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.terminal-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: linear-gradient(180deg, #2a2a4a, #1a1a2e);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.terminal-dots {
+    display: flex;
+    gap: 8px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.dot.red {
+    background: #ff5f56;
+}
+
+.dot.yellow {
+    background: #ffbd2e;
+}
+
+.dot.green {
+    background: #27ca40;
+}
+
+.terminal-title {
+    flex: 1;
+    color: #888;
+    font-size: 13px;
+    text-align: center;
+}
+
+.terminal-clear {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: #888;
+    padding: 4px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.2s;
+}
+
+.terminal-clear:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+}
+
+.terminal-body {
+    flex: 1;
+    padding: 16px;
+    overflow-y: auto;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.terminal-line {
+    margin-bottom: 4px;
+}
+
+.terminal-line pre {
+    margin: 0;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.terminal-line.input {
+    color: #64d2ff;
+}
+
+.terminal-line.output {
+    color: #e0e0e0;
+}
+
+.terminal-line.error {
+    color: #ff6b6b;
+}
+
+.terminal-line.system {
+    color: #a78bfa;
+    font-style: italic;
+}
+
+.terminal-input-line {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.terminal-input-line .prompt {
+    color: #4ade80;
+    font-weight: bold;
+}
+
+.terminal-input-line input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-family: inherit;
+    font-size: inherit;
+    outline: none;
+    caret-color: #4ade80;
+}
+
+.terminal-input-line input::placeholder {
+    color: #555;
+}
+
+.terminal-input-line input:disabled {
+    opacity: 0.5;
+}
+
+/* Scrollbar styling */
+.terminal-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+.terminal-body::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.terminal-body::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+}
+
+.terminal-body::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+}

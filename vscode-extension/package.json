@@ -1,0 +1,90 @@
+{
+    "name": "agenty",
+    "displayName": "AgentY - AI Coding Assistant",
+    "description": "Multi-agent AI coding system with Planner, Coder, and Tester agents",
+    "version": "0.1.0",
+    "publisher": "agenty",
+    "engines": {
+        "vscode": "^1.85.0"
+    },
+    "categories": [
+        "Other",
+        "Machine Learning"
+    ],
+    "activationEvents": [
+        "onCommand:agenty.start",
+        "onView:agenty.panel"
+    ],
+    "main": "./out/extension.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "agenty.start",
+                "title": "AgentY: Start Agent Session"
+            },
+            {
+                "command": "agenty.stop",
+                "title": "AgentY: Stop Agent Session"
+            },
+            {
+                "command": "agenty.submitTask",
+                "title": "AgentY: Submit Task"
+            }
+        ],
+        "viewsContainers": {
+            "activitybar": [
+                {
+                    "id": "agenty",
+                    "title": "AgentY",
+                    "icon": "media/icon.svg"
+                }
+            ]
+        },
+        "views": {
+            "agenty": [
+                {
+                    "type": "webview",
+                    "id": "agenty.panel",
+                    "name": "AgentY"
+                }
+            ]
+        },
+        "configuration": {
+            "title": "AgentY",
+            "properties": {
+                "agenty.orchestratorUrl": {
+                    "type": "string",
+                    "default": "http://127.0.0.1:8001",
+                    "description": "URL of the AgentY orchestrator"
+                },
+                "agenty.model": {
+                    "type": "string",
+                    "default": "qwen3:8b",
+                    "description": "LLM model to use for agent inference"
+                },
+                "agenty.requireApproval": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Require approval before executing plans"
+                }
+            }
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "lint": "eslint src --ext ts"
+    },
+    "devDependencies": {
+        "@types/node": "^20.10.0",
+        "@types/vscode": "^1.85.0",
+        "@typescript-eslint/eslint-plugin": "^6.13.0",
+        "@typescript-eslint/parser": "^6.13.0",
+        "eslint": "^8.54.0",
+        "typescript": "^5.3.0"
+    },
+    "dependencies": {
+        "ws": "^8.14.0"
+    }
+}
