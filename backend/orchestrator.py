@@ -28,7 +28,7 @@ from pydantic import BaseModel
 
 from memory import get_memory
 from agents import get_orchestrator, AgentMessage, MessageType
-from session_history import get_session_manager
+from session_history import session_history
 
 app = FastAPI(title="AgentY Orchestrator v2", version="2.0.0")
 
@@ -121,7 +121,7 @@ async def agent_message_handler(message: AgentMessage):
         memory.store(run_id, message.type.value, message.content)
     
     # Store in session history
-    session_mgr = get_session_manager()
+    session_mgr = session_history
     for active_run_id in list(active_connections.keys()):
         try:
             session_mgr.add_message(
@@ -285,7 +285,7 @@ async def start_run(req: StartRequest):
     }
     
     # Create session in history
-    session_mgr = get_session_manager()
+    session_mgr = session_history
     session_mgr.create_session(run_id, req.goal)
     
     # Run the task through multi-agent system
@@ -418,7 +418,7 @@ def get_decision_chain(node_id: str):
 @app.get("/sessions")
 def list_sessions(limit: int = 50, offset: int = 0, status: Optional[str] = None):
     """List past sessions with pagination."""
-    session_mgr = get_session_manager()
+    session_mgr = session_history
     sessions = session_mgr.list_sessions(limit=limit, offset=offset, status=status)
     return {"sessions": sessions, "count": len(sessions)}
 
@@ -426,7 +426,7 @@ def list_sessions(limit: int = 50, offset: int = 0, status: Optional[str] = None
 @app.get("/sessions/{session_id}")
 def get_session(session_id: str, include_messages: bool = True):
     """Get a session by ID with full message history."""
-    session_mgr = get_session_manager()
+    session_mgr = session_history
     session = session_mgr.get_session(session_id, include_messages=include_messages)
     if session:
         return session
@@ -436,21 +436,21 @@ def get_session(session_id: str, include_messages: bool = True):
 @app.get("/sessions/{session_id}/summary")
 def get_session_summary(session_id: str):
     """Get a summary of a session (agent activity, message types)."""
-    session_mgr = get_session_manager()
+    session_mgr = session_history
     return session_mgr.get_session_summary(session_id)
 
 
 @app.get("/sessions/search/{query}")
 def search_sessions(query: str, limit: int = 20):
     """Search sessions by goal text."""
-    session_mgr = get_session_manager()
+    session_mgr = session_history
     return {"results": session_mgr.search_sessions(query, limit)}
 
 
 @app.delete("/sessions/{session_id}")
 def delete_session(session_id: str):
     """Delete a session and its messages."""
-    session_mgr = get_session_manager()
+    session_mgr = session_history
     session_mgr.delete_session(session_id)
     return {"status": "deleted", "session_id": session_id}
 
@@ -458,7 +458,7 @@ def delete_session(session_id: str):
 @app.post("/sessions/{session_id}/complete")
 def complete_session(session_id: str, summary: Optional[str] = None):
     """Mark a session as completed."""
-    session_mgr = get_session_manager()
+    session_mgr = session_history
     session_mgr.update_session_status(session_id, "completed", summary=summary)
     return {"status": "completed", "session_id": session_id}
 
