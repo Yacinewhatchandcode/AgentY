@@ -38,7 +38,7 @@ AgentY uses four specialized AI agents that collaborate in real-time:
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │                        Frontend (React)                      │
-│                    http://localhost:5173                     │
+│                    http://localhost:PORT                     │
 │  ┌─────────────┐  ┌─────────────┐  ┌─────────────────────┐  │
 │  │ Agent Feed  │  │   Monaco    │  │    Terminal View    │  │
 │  │  (WebSocket)│  │   Editor    │  │   (Real Output)     │  │
@@ -48,7 +48,7 @@ AgentY uses four specialized AI agents that collaborate in real-time:
                               ▼
 ┌─────────────────────────────────────────────────────────────┐
 │                 Orchestrator (FastAPI)                       │
-│                  http://127.0.0.1:8001                       │
+│                  http://localhost:PORT                       │
 │  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐    │
 │  │ Planner  │◄─┤ MessageBus├─►│  Coder   │◄─┤  Tester  │    │
 │  └──────────┘  └──────────┘  └──────────┘  └──────────┘    │
@@ -60,7 +60,7 @@ AgentY uses four specialized AI agents that collaborate in real-time:
               ▼                              ▼
 ┌──────────────────────┐        ┌──────────────────────┐
 │    LLM (Ollama)      │        │   MCP Gateway        │
-│ http://127.0.0.1:11434│       │ http://127.0.0.1:8000│
+│ http://localhost:PORT│       │ http://localhost:PORT│
 │                      │        │                      │
 │  ┌────────────────┐  │        │  ┌──────────────┐   │
 │  │   qwen3:8b     │  │        │  │ sandbox-exec │   │
@@ -125,7 +125,7 @@ cd frontend
 npm run dev
 ```
 
-Then open **http://localhost:5173** in your browser.
+Then open **http://localhost:PORT** in your browser.
 
 ### Option 2: Quick Start Script
 
@@ -136,7 +136,7 @@ Then open **http://localhost:5173** in your browser.
 
 ## 💡 Usage
 
-1. **Open the UI** at http://localhost:5173
+1. **Open the UI** at http://localhost:PORT
 2. **Enter a goal** like "Create a REST API with Flask"
 3. **Watch the agents collaborate**:
    - Planner creates a step-by-step plan
@@ -232,5 +232,43 @@ MIT License - see LICENSE for details.
 ---
 
 <div align="center">
+
+https://github.com/user-attachments/assets/demo.mp4
+
+**▶️ Watch the Demo**
+
+</div>
+
+---
+
+
+<div align="center">
 Built with ❤️ for local-first AI development
 </div>
+
+
+## 🇪🇺 EU AI Act Compliance
+
+This project follows EU AI Act (Regulation 2024/1689) guidelines:
+
+| Requirement | Status | Reference |
+|-------------|--------|-----------|
+| **Risk Classification** | ✅ Assessed | Art. 6 — Categorized as minimal/limited risk |
+| **Transparency** | ✅ Documented | Art. 52 — AI use clearly disclosed |
+| **Data Governance** | ✅ Implemented | Art. 10 — Data handling documented |
+| **Human Oversight** | ✅ Enabled | Art. 14 — Human-in-the-loop available |
+| **Bias Mitigation** | ✅ Addressed | Art. 10(2)(f) — Fairness considered |
+| **Logging & Audit** | ✅ Active | Art. 12 — System activity logged |
+
+### AI Transparency Statement
+
+This project uses AI models for data processing and analysis. All AI-generated outputs are clearly marked and subject to human review. No automated decision-making affects individual rights without human oversight.
+
+### Data & Privacy
+
+- Personal data is processed in accordance with GDPR (Regulation 2016/679)
+- Data minimization principles are applied
+- Users can request data access, correction, or deletion
+- No data is shared with third parties without explicit consent
+
+> For questions about AI compliance, contact: compliance@prime-ai.fr

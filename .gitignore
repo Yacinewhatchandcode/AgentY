@@ -80,3 +80,12 @@ Thumbs.db
 workspace/*.pyc
 sessions.db
 memory.db
+
+# Security - never commit secrets
+.env.production
+.env.development
+*.pem
+*.key
+id_rsa
+id_ed25519
+credentials.json
